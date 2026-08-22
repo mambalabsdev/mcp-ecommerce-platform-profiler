@@ -1,0 +1,34 @@
+{
+  "name": "mcp-ecommerce-platform-profiler",
+  "displayName": "Ecommerce Platform Profiler",
+  "version": "1.0.0",
+  "description": "MCP server for the Mamba Labs Ecommerce Platform Profiler actor on Apify. Detect the ecommerce platform, payment providers and catalogue size behind a storefront.",
+  "author": {
+    "name": "Mamba Labs",
+    "email": "labs@mambamindsetgrowth.com"
+  },
+  "homepage": "https://mambabuilt.com",
+  "repository": "https://github.com/mambalabsdev/mcp-ecommerce-platform-profiler",
+  "license": "MIT",
+  "logo": "https://mmg-brand-assets.netlify.app/apify-actor-pngs/apify_webhook.png",
+  "category": "productivity",
+  "tags": [
+    "ecommerce",
+    "shopify",
+    "technographics",
+    "platform-detection",
+    "apify",
+    "clay"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ecommerce",
+    "shopify",
+    "technographics",
+    "platform-detection",
+    "apify",
+    "clay"
+  ],
+  "mcpServers": ".mcp.json"
+}

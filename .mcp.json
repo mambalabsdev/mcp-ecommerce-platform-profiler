@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "mamba-ecommerce-platform-profiler": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mambalabsdev/mcp-ecommerce-platform-profiler"
+      ],
+      "env": {
+        "APIFY_TOKEN": "your-apify-token"
+      }
+    }
+  }
+}
