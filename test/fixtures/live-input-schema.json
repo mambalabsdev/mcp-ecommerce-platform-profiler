@@ -1,0 +1,109 @@
+{
+  "_provenance": {
+    "actorId": "5G2NeYjBbQTjaTn9L",
+    "buildId": "3PDIbLfMJ280B2ZLk",
+    "buildNumber": "0.2.8",
+    "readAt": "2026-10-05T15:41:10.545Z"
+  },
+  "title": "Ecommerce Platform Profiler - Shopify, Woo, Magento Input",
+  "description": "Give a company domain. Returns the ecommerce platform, payment providers, whether it sells subscriptions, an estimated product count and the currencies it accepts. A storefront that hides its platform behind JavaScript reports not_extractable, never a wrong guess. Free Apify plan users get 900 results per calendar month, reset monthly. Upgrade to any paid Apify plan for unlimited use: https://apify.com/pricing?fpr=mamba",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "company_domain": {
+      "title": "Company Domain",
+      "type": "string",
+      "description": "Bare company domain, for example allbirds.com. This is the storefront that gets read, and it is the join key against every other actor in the fleet including the Pinterest brand presence mapper.",
+      "editor": "textfield",
+      "prefill": "allbirds.com"
+    },
+    "company_name": {
+      "title": "Company Name",
+      "type": "string",
+      "description": "Optional but strongly recommended. It is what the identity gate checks a discovered record against, so supplying it is the single cheapest way to reduce wrong matches.",
+      "editor": "textfield",
+      "prefill": "Allbirds"
+    },
+    "includeProductCount": {
+      "title": "Include Product Count",
+      "type": "string",
+      "description": "When \"true\" (default) the catalog size is estimated, from the Shopify products endpoint where the store is Shopify and from the sitemap otherwise. It costs one or two extra requests. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "true",
+        "false"
+      ],
+      "enumTitles": [
+        "true (estimate the catalog size)",
+        "false (skip, one fewer request)"
+      ],
+      "default": "true"
+    },
+    "includePaymentProviders": {
+      "title": "Include Payment Providers",
+      "type": "string",
+      "description": "When \"true\" (default) the payment provider scripts loaded on the storefront are detected. Providers that load only inside a real checkout are invisible from the homepage, which is why checkCheckout exists. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "true",
+        "false"
+      ],
+      "enumTitles": [
+        "true (detect payment providers)",
+        "false (skip payments)"
+      ],
+      "default": "true"
+    },
+    "checkCheckout": {
+      "title": "Read the Cart Page",
+      "type": "string",
+      "description": "When \"true\" the public cart page is also read, because several payment and buy now pay later providers load there and not on the homepage. This never adds an item, never starts a checkout and never submits anything: it is a plain read of a public URL. Costs one extra request. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "false",
+        "true"
+      ],
+      "enumTitles": [
+        "false (homepage only, default)",
+        "true (also read the public cart page)"
+      ],
+      "default": "false"
+    },
+    "escalateOnBlock": {
+      "title": "Escalate On Block",
+      "type": "string",
+      "description": "When \"true\" (default) a storefront that answers 403 or 429 is retried once from a residential exit, because a bot challenge on a first read is common and one retry clears a fair share of them. Set \"false\" to fail fast and cheap. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "true",
+        "false"
+      ],
+      "enumTitles": [
+        "true (retry a blocked storefront once)",
+        "false (fail fast, cheaper)"
+      ],
+      "default": "true"
+    },
+    "skipCache": {
+      "title": "Skip Cache",
+      "type": "string",
+      "description": "When \"false\" (default) a successful lookup is cached for seven days and reused, which costs you nothing on a repeated run. Set \"true\" to force a fresh fetch. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "false",
+        "true"
+      ],
+      "enumTitles": [
+        "false (use cache)",
+        "true (force fresh)"
+      ],
+      "default": "false"
+    },
+    "source_tag": {
+      "title": "Source Tag",
+      "type": "string",
+      "description": "Internal attribution tag set by Mamba Labs on published task examples. Not required, and nothing depends on it. Leave it empty.",
+      "editor": "textfield"
+    }
+  }
+}
