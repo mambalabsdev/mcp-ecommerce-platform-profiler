@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.3",
   "name": "mcp-ecommerce-platform-profiler",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "MCP server that detect the ecommerce platform, payment providers and catalogue size behind a storefront.",
   "author": {
     "name": "Mamba Labs"
