@@ -1,7 +1,7 @@
 {
   "name": "mcp-ecommerce-platform-profiler",
   "displayName": "Ecommerce Platform Profiler",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "MCP server for the Mamba Labs Ecommerce Platform Profiler actor on Apify. Detect the ecommerce platform, payment providers and catalogue size behind a storefront.",
   "author": {
     "name": "Mamba Labs",

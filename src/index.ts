@@ -218,12 +218,13 @@ server.registerTool(
       "Detect which ecommerce platform a storefront runs on (Shopify, WooCommerce, Magento, BigCommerce, Salesforce Commerce, Squarespace, Wix, PrestaShop or commercetools), plus its payment providers, subscription and marketplace apps, an estimated catalogue size, currencies and shipping destinations. Returns one flat Clay ready row. Static homepage and sitemap reads only, no browser, so a storefront that reveals its platform only after JavaScript runs is reported as not_extractable rather than labelled with the nearest guess. Confidence follows the KIND of evidence: a vendor header is high, a substring in the HTML is low. Use it to qualify ecommerce accounts by platform before outreach, or to segment a store list by catalogue size and payment stack. Pass company_name with the domain to cut wrong matches. Requires an APIFY_TOKEN and consumes Apify credits per call.",
     annotations: {
       title: "Profile Ecommerce Platform",
-      readOnlyHint: true,
+      readOnlyHint: false,
       destructiveHint: false,
       idempotentHint: true,
       openWorldHint: true,
     },
     inputSchema: {
+      max_charge_usd: z.number().min(0).optional().describe("Optional. The run stops before its event charges pass this amount, for example 2.50. Every row already charged is kept. Leave empty for no cap beyond the maximum cost per run you set in Apify, which is also honored."),
       company_domain: z.string()
         .optional()
         .describe("Bare company domain, for example allbirds.com. This is the storefront that gets read, and it is the join key against every other actor in the fleet including the Pinterest brand presence mapper."),
@@ -247,11 +248,12 @@ server.registerTool(
         .describe("When false (default) a successful lookup is cached for seven days and reused, which costs you nothing on a repeated run. Set true to force a fresh fetch."),
     },
   },
-  async ({ company_domain, company_name, includeProductCount, includePaymentProviders, checkCheckout, escalateOnBlock, skipCache }) => {
+  async ({ company_domain, company_name, includeProductCount, includePaymentProviders, checkCheckout, escalateOnBlock, skipCache, max_charge_usd }) => {
     return runActor(
       "5G2NeYjBbQTjaTn9L",
       "Ecommerce Platform Profiler",
       compact({
+        max_charge_usd,
         company_domain,
         company_name,
         includeProductCount: boolToString(includeProductCount),
