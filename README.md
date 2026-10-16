@@ -69,6 +69,7 @@ Get your token at https://console.apify.com/account/integrations, paste it in, a
 - `checkCheckout` (optional): when true the public cart page is also read, because several payment and buy now pay later providers load there and not on the homepage. This never adds an item, never starts a checkout and never submits anything. It is a plain read of a public URL and costs one extra request.
 - `escalateOnBlock` (optional): when true (the default) a storefront that answers 403 or 429 is retried once from a residential exit, because a bot challenge on a first read is common. Set false to fail fast and cheap.
 - `skipCache` (optional): when false (the default) a successful lookup is cached for seven days and reused. Set true to force a fresh fetch.
+- `max_charge_usd` (optional): a cost cap in USD for this run. The actor stops before an item that could take its charges past this amount. Omit it to rely on the maximum cost per run set in Apify.
 
 ## Output
 
@@ -112,6 +113,17 @@ The tool returns the actor's flat JSON row for the company, with 22 snake_case f
 - Confidence and evidence recorded per detection, not a bare label
 - Coverage reported per row, so a thin read is visible
 - 22 flat snake_case fields, one row per company
+
+## Pricing
+
+Price per event on the Apify FREE plan, from the live pricing record; paid Apify plans pay less per event.
+
+| Event | Price (USD) |
+| --- | --- |
+| Actor Start (`apify-actor-start`) | 0.00005 |
+| Company checked (`company-checked`) | 0.0035 |
+| Platform detected (`platform-detected`) | 0.003 |
+| Product count estimated (`product-count-estimated`) | 0.0025 |
 
 ## Full actor documentation
 
